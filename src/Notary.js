@@ -19,9 +19,35 @@ class Notary {
       result = "0A4B";
     } else if (false == this._hasSameNumber() && false == this._hasSamePosition()) {
       result = "0A0B";
+    } else {
+      let sameNumberCount = this._countSameNumber();
+      let samePositionCount = this._countSamePosition();
+      result = samePositionCount + 'A' + (sameNumberCount - samePositionCount) + 'B';
     }
 
     return result;
+  }
+
+  _countSameNumber() {
+    var count = 0;
+    for(var i = 0; i < this.answer.length; i++){
+      if(-1 !== this.theCard.indexOf(this.answer[i])) {
+        count++;
+      }
+    }
+
+    return count;
+  }
+
+  _countSamePosition() {
+    var count = 0;
+    for(var i = 0; i < this.answer.length; i++){
+      if(this.theCard[i] === this.answer[i]) {
+        count++;
+      }
+    }
+
+    return count;
   }
 
   _hasSameNumber() {
