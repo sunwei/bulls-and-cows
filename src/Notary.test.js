@@ -20,3 +20,10 @@ it('given_4321_when_judge_then_0A4B', () => {
 
 });
 
+it('given_5678_when_judge_then_0A0B', () => {
+
+  let result = notary.judge('5678');
+  expect(result).toEqual('0A0B');
+
+});
+
