@@ -1,5 +1,5 @@
 
-> **This project was designed with TDD.**
+> This project was designed with **TDD** .
 
 ## `Notary.js` provide judge method to tell user the result
 
