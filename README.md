@@ -29,6 +29,14 @@ If we want to balance the effort and confidence, how many tests we need to make 
  
 ---
 
+## `GameCenter.js` is the playground for our game
+ 
+ There are 6 lives by default for each round, so we need to cover stages blow:
+   
+ 1. get the right answer at the **first time**
+ 2. **run out** of lives
+ 3. got lives **to continue**
+ 
 ## The rest thing we need to do is the UI part, and we want to make it as **Conversation UI**.
 
 # Ready Go! Have Fun! 
