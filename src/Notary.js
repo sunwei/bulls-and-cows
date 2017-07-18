@@ -9,10 +9,22 @@ class Notary {
   }
 
   judge(answer) {
-    if(answer === '1243'){
-      return "2A2B";
+    var result = "";
+
+    if(answer === this.theCard){
+      result = "4A0B";
+    } else if (this._isUpsideDown(answer)){
+      result = "0A4B";
     }
-    return "4A0B";
+
+    return result;
+  }
+
+  _isUpsideDown(answer) {
+    return answer[0] === this.theCard[3] &&
+      answer[1] === this.theCard[2] &&
+      answer[2] === this.theCard[1] &&
+      answer[3] === this.theCard[0]
   }
 
 

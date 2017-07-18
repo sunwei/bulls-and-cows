@@ -13,9 +13,10 @@ it('given_1234_when_judge_then_4A0B', () => {
 
 });
 
-it('given_1243_when_judge_then_2A2B', () => {
+it('given_4321_when_judge_then_0A4B', () => {
 
-  let result = notary.judge('1243');
-  expect(result).toEqual('2A2B');
+  let result = notary.judge('4321');
+  expect(result).toEqual('0A4B');
 
 });
+
