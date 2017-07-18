@@ -242,3 +242,18 @@ h4 {
 a {
   color: #fff;
 }
+
+.user-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.user-input input{
+  width: 100%;
+  height: 35px;
+}
+
+.hidden {
+  display:none;
+}

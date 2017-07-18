@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import GameCenter from './GameCenter'
 
 const randomReply = replies => replies[Math.floor(Math.random() * replies.length)];
 
@@ -28,19 +29,46 @@ class App extends Component {
     super();
     this.chat = null;
     this.content = null;
-    this.idle = null;
-    this.idletime = 45000;
+    this.userInput = null;
+    // this.idle = null;
+    // this.idletime = 45000;
+    this.gameCenter = new GameCenter();
+
+    this.state = {
+      userInputHidden: true
+    }
   }
 
   componentDidMount() {
     this.chat = document.querySelector('.chat');
     this.content = document.querySelector('.content');
+    this.userInput = document.querySelector('#user-answer');
 
     this._init();
     this._addEventListener();
   }
 
-  newMessage(message, type = 'user') {
+  oneMoreTime() {
+    this.newMessage('One more time!', 'bot');
+    this.showMenu();
+  }
+
+  answerEntered(answer){
+    this.newMessage(answer, 'user', 'user-answer');
+    let response = this.gameCenter.play(answer);
+    if ('continue' === response.status) {
+      this.newMessage(response.lives + ' chances left. ' + '<br/> tips: ' + response.tip, 'bot');
+    } else if ('sorry' === response.status) {
+      this.newMessage(response.message, 'bot');
+      this.oneMoreTime();
+    } else if ('congratulations' === response.status) {
+      this.newMessage(response.message, 'bot');
+      this.oneMoreTime();
+    }
+
+  }
+
+  newMessage(message, type = 'user', action) {
     let bubble = document.createElement('section'),
       slideIn = (el, i) => {
         setTimeout(() => {
@@ -73,6 +101,11 @@ class App extends Component {
       }
       bubble.classList.add('active');
     }
+
+    if (action === 'user-answer') {
+      bubble.classList.add('selected');
+    }
+
   };
 
   checkUp() {
@@ -107,10 +140,12 @@ class App extends Component {
     let welcomeReplies = [
       'Hello! &#x1F44B; I\'m Wayde, this is the playground for xAxB game. Have Fun!'
     ];
-    this.idle = window.setInterval(() => {
-      window.clearInterval(this.idle);
-      this.checkUp();
-    }, this.idletime);
+
+    // this.idle = window.setInterval(() => {
+    //   window.clearInterval(this.idle);
+    //   this.checkUp();
+    // }, this.idletime);
+
     this.newMessage(randomReply(welcomeReplies), 'bot');
     this.showMenu();
   };
@@ -147,6 +182,14 @@ class App extends Component {
       }
 
     });
+
+    document.addEventListener('keydown', e => {
+      if (e.keyCode === 13) {
+        this.answerEntered(this.userInput.value);
+        this.userInput.value = null;
+        this.userInput.blur();
+      }
+    });
   };
 
   showMenu() {
@@ -160,10 +203,10 @@ class App extends Component {
       }, 300);
     }, 500);
 
-    this.idle = window.setInterval(() => {
-      window.clearInterval(this.idle);
-      this.checkUp();
-    }, this.idletime);
+    // this.idle = window.setInterval(() => {
+    //   window.clearInterval(this.idle);
+    //   this.checkUp();
+    // }, this.idletime);
   };
 
   menuClick(clicked) {
@@ -178,6 +221,10 @@ class App extends Component {
     if(menuChoice.title === 'Start'){
       setTimeout(() => {
         this.newMessage(randomReply(startReplies), 'bot');
+        this.setState({
+          userInputHidden: false
+        });
+        this.gameCenter.start();
       }, 500);
     } else {
       setTimeout(() => {
@@ -198,6 +245,11 @@ class App extends Component {
         </article>
         <div className="content" role="document" aria-hidden="true" aria-label="Information">
           <button className="close" aria-label="Close">&times;</button>
+        </div>
+        <div>
+          <div className="user-input">
+            <input type="text" name="user-answer" id="user-answer" placeholder="Let me guess..." className={this.state.userInputHidden ? 'hidden' : ''}/>
+          </div>
         </div>
       </div>
     );

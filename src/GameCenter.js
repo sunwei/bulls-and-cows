@@ -28,12 +28,13 @@ class GameCenter {
 
       return {
         status: 'congratulations',
-        message: 'Bingo! You Won!'
+        message: 'Bingo! You Won!',
+        card: this.c
       }
     }
 
     this.lives--;
-    if(0 === this.lives) {
+    if(0 >= this.lives) {
       this.end();
 
       return {
@@ -60,6 +61,8 @@ class GameCenter {
   _restore() {
     this.lives = DEFAULT_LIVES;
     this.theCard = this.dealer.showTheCard();
+    console.log('===========');
+    console.log(this.theCard);
   }
 
 }
