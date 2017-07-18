@@ -15,6 +15,7 @@ If we want to balance the effort and confidence, how many tests we need to make 
 | **Partially Equal** | 2A2B | 2A0B | NOT EXIST |
 | **Totally not Equal** | 0A4B | 0A2B | 0A0B |
 
+---
 
 ## `Dealer.js` is an random generator for the card
  
@@ -25,3 +26,9 @@ If we want to balance the effort and confidence, how many tests we need to make 
  1. the **number** in the string is **different**
  2. the string **length** is **4**
  3. the number in the **range 1 - 9**
+ 
+---
+
+## The rest thing we need to do is the UI part, and we want to make it as **Conversation UI**.
+
+# Ready Go! Have Fun! 
