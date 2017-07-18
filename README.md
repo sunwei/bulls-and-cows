@@ -16,7 +16,7 @@ If we want to balance the effort and confidence, how many tests we need to make 
 | **Totally not Equal** | 0A4B | 0A2B | 0A0B |
 
 
-## 'Dealer.js' is an random generator for the card
+## `Dealer.js` is an random generator for the card
  
  The requirement is we can generate a string which contains 4 different number in the range 1 - 9.
  
