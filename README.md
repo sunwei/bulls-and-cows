@@ -14,4 +14,14 @@ If we want to balance the effort and confidence, how many tests we need to make 
 | **Totally Equal** | 4A0B | NOT EXIST | NOT EXIST |
 | **Partially Equal** | 2A2B | 2A0B | NOT EXIST |
 | **Totally not Equal** | 0A4B | 0A2B | 0A0B |
+
+
+## 'Dealer.js' is an random generator for the card
  
+ The requirement is we can generate a string which contains 4 different number in the range 1 - 9.
+ 
+ It seems it's impossible to test a random string, but we can find some key words to test.
+  
+ 1. the **number** in the string is **different**
+ 2. the string **length** is **4**
+ 3. the number in the **range 1 - 9**
