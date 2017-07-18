@@ -11,7 +11,7 @@ If we want to balance the effort and confidence, how many tests we need to make 
 
 | Position\Number | Totally Equal | Partially Equal | Totally not Equal |
 | ------| ------ | ------ | ------ |
-| Totally Equal | 4A0B | NOT EXIST | NOT EXIST |
-| Partially Equal | 2A2B | 2A0B | NOT EXIST |
-| Totally not Equal | 0A4B | 0A2B | 0A0B |
+| **Totally Equal** | 4A0B | NOT EXIST | NOT EXIST |
+| **Partially Equal** | 2A2B | 2A0B | NOT EXIST |
+| **Totally not Equal** | 0A4B | 0A2B | 0A0B |
  
