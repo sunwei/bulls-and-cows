@@ -64,6 +64,8 @@ class App extends Component {
     } else if ('congratulations' === response.status) {
       this.newMessage(response.message, 'bot');
       this.oneMoreTime();
+    } else {
+      this.newMessage(response.lives + ' chances left. ' + '<br/> ' + response.message, 'bot');
     }
 
   }

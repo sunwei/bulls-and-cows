@@ -21,35 +21,57 @@ class GameCenter {
     this.notary = new Notary(this.theCard);
   }
 
-  play(answer) {
-    let tip = this.notary.judge(answer);
-    if (CORRECT_ANSWER === tip) {
-      this.end();
+  checkLives() {
+    return 0 >= this.lives ? false : true;
+  }
 
-      return {
-        status: 'congratulations',
-        message: 'Bingo! You Won!',
-        card: this.c
-      }
-    }
+  play(answer) {
 
     this.lives--;
-    if(0 >= this.lives) {
-      this.end();
+    let isCardValid = this.dealer.checkCard(answer);
 
-      return {
-        status: 'sorry',
-        message: 'Game Over! You Loose!'
+    if(isCardValid){
+      let tip = this.notary.judge(answer);
+      if (CORRECT_ANSWER === tip) {
+        this.end();
+
+        return {
+          status: 'congratulations',
+          message: 'Bingo! You Won!',
+          card: this.theCard
+        }
+      } else {
+
+        if(this.checkLives()) {
+          return {
+            status: 'continue',
+            message: 'Come on! We can made it!',
+            lives: this.lives,
+            tip: tip
+          }
+        } else {
+          this.end();
+          return {
+            status: 'sorry',
+            message: 'Game Over! You Loose!'
+          }
+        }
+      }
+    } else {
+      if(this.checkLives()) {
+        return {
+          status: 'checkCardFail',
+          message: 'Please input 4 different number string in range 1 - 9!',
+          lives: this.lives,
+        }
+      } else {
+        this.end();
+        return {
+          status: 'sorry',
+          message: 'Game Over! You Loose!'
+        }
       }
     }
-
-    return {
-      status: 'continue',
-      message: 'Come on! We can made it!',
-      lives: this.lives,
-      tip: tip
-    }
-
   }
 
   end() {

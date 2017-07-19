@@ -69,7 +69,7 @@ h4 {
 
 .chat {
   height: 100%;
-  padding: 1em;
+  padding: 1em 1em 35px 1em;
 }
 
 .content {
